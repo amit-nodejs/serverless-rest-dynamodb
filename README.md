@@ -1,5 +1,6 @@
 # Serverless REST API with AWS DynamoDB
 This example demonstrates CRUD operations on users.
+Swagger : https://app.swaggerhub.com/apis/amit-nodejs/serverless-rest-dynamodb/0.0.1
 ## Setup
 Create `users` table with `id` as partition key.
 ```sh
