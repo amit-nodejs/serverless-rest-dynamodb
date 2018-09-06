@@ -1,0 +1,19 @@
+{
+  "name": "serverless-rest-dynamodb",
+  "version": "0.0.1",
+  "description": "Serverless REST API with DynamoDB",
+  "main": "handler.js",
+  "dependencies": {
+    "async": "^2.6.1",
+    "aws-sdk": "^2.309.0",
+    "uuid": "^3.3.2"
+  },
+  "devDependencies": {
+    "serverless-offline": "^3.25.10"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Amit Kumar <amit.kumar@globant.com>",
+  "license": "MIT"
+}
