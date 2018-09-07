@@ -14,13 +14,15 @@ module.exports.usersCreate = (event, context, callback) => {
       if (err) {
         callback(null, {
           statusCode: _apiConfig.STATUS_CODE.ERROR,
-          body: process.env.DEBUG == 1 ? JSON.stringify(err) : JSON.stringify(_apiConfig.ERROR_MSG)
+          headers: _apiConfig.HEADER.DEFAULT,
+          body: process.env.DEBUG == 1 ? JSON.stringify(err) : JSON.stringify(_apiConfig.ERROR_MSG.DEFAULT)
         });
         return;
       }
       callback(null, {
         statusCode: _apiConfig.STATUS_CODE.SUCCESS,
-        body: res ? JSON.stringify(res) : JSON.stringify('OK')
+        headers: _apiConfig.HEADER.DEFAULT,
+        body: res ? JSON.stringify(res) : JSON.stringify(_apiConfig.SUCCESS_MSG.DEFAULT)
       });
     });
 
@@ -28,7 +30,8 @@ module.exports.usersCreate = (event, context, callback) => {
 
     callback(null, {
       statusCode: _apiConfig.STATUS_CODE.ERROR,
-      body: process.env.DEBUG == 1 ? JSON.stringify(e) : JSON.stringify(_apiConfig.ERROR_MSG)
+      headers: _apiConfig.HEADER.DEFAULT,
+      body: process.env.DEBUG == 1 ? JSON.stringify(e) : JSON.stringify(_apiConfig.ERROR_MSG.DEFAULT)
     });
 
   }
@@ -41,13 +44,15 @@ module.exports.usersDelete = (event, context, callback) => {
       if (err) {
         callback(null, {
           statusCode: _apiConfig.STATUS_CODE.ERROR,
-          body: process.env.DEBUG == 1 ? JSON.stringify(err) : JSON.stringify(_apiConfig.ERROR_MSG)
+          headers: _apiConfig.HEADER.DEFAULT,
+          body: process.env.DEBUG == 1 ? JSON.stringify(err) : JSON.stringify(_apiConfig.ERROR_MSG.DEFAULT)
         });
         return;
       }
       callback(null, {
         statusCode: _apiConfig.STATUS_CODE.SUCCESS,
-        body: res ? JSON.stringify(res) : JSON.stringify('OK')
+        headers: _apiConfig.HEADER.DEFAULT,
+        body: res ? JSON.stringify(res) : JSON.stringify(_apiConfig.SUCCESS_MSG.DEFAULT)
       });
     });
 
@@ -55,7 +60,8 @@ module.exports.usersDelete = (event, context, callback) => {
 
     callback(null, {
       statusCode: _apiConfig.STATUS_CODE.ERROR,
-      body: process.env.DEBUG == 1 ? JSON.stringify(e) : JSON.stringify(_apiConfig.ERROR_MSG)
+      headers: _apiConfig.HEADER.DEFAULT,
+      body: process.env.DEBUG == 1 ? JSON.stringify(e) : JSON.stringify(_apiConfig.ERROR_MSG.DEFAULT)
     });
 
   }
@@ -68,13 +74,15 @@ module.exports.usersGet = (event, context, callback) => {
       if (err) {
         callback(null, {
           statusCode: _apiConfig.STATUS_CODE.ERROR,
-          body: process.env.DEBUG == 1 ? JSON.stringify(err) : JSON.stringify(_apiConfig.ERROR_MSG)
+          headers: _apiConfig.HEADER.DEFAULT,
+          body: process.env.DEBUG == 1 ? JSON.stringify(err) : JSON.stringify(_apiConfig.ERROR_MSG.DEFAULT)
         })
         return;
       }
       callback(null, {
         statusCode: res ? _apiConfig.STATUS_CODE.SUCCESS : _apiConfig.STATUS_CODE.NOT_FOUND,
-        body: res ? JSON.stringify(res) : JSON.stringify('NOT FOUND')
+        headers: _apiConfig.HEADER.DEFAULT,
+        body: res ? JSON.stringify(res) : JSON.stringify({message : 'Not found'})
       });
     });
 
@@ -82,7 +90,8 @@ module.exports.usersGet = (event, context, callback) => {
 
     callback(null, {
       statusCode: _apiConfig.STATUS_CODE.ERROR,
-      body: process.env.DEBUG == 1 ? JSON.stringify(e) : JSON.stringify(_apiConfig.ERROR_MSG)
+      headers: _apiConfig.HEADER.DEFAULT,
+      body: process.env.DEBUG == 1 ? JSON.stringify(e) : JSON.stringify(_apiConfig.ERROR_MSG.DEFAULT)
     });
 
   }
@@ -95,13 +104,15 @@ module.exports.usersList = (event, context, callback) => {
       if (err) {
         callback(null, {
           statusCode: _apiConfig.STATUS_CODE.ERROR,
-          body: process.env.DEBUG == 1 ? JSON.stringify(err) : JSON.stringify(_apiConfig.ERROR_MSG)
+          headers: _apiConfig.HEADER.DEFAULT,
+          body: process.env.DEBUG == 1 ? JSON.stringify(err) : JSON.stringify(_apiConfig.ERROR_MSG.DEFAULT)
         });
         return;
       }
       callback(null, {
         statusCode: _apiConfig.STATUS_CODE.SUCCESS,
-        body: res ? JSON.stringify(res) : JSON.stringify('OK')
+        headers: _apiConfig.HEADER.DEFAULT,
+        body: res ? JSON.stringify(res) : JSON.stringify(_apiConfig.SUCCESS_MSG.DEFAULT)
       });
     });
 
@@ -109,7 +120,8 @@ module.exports.usersList = (event, context, callback) => {
     
     callback(null, {
       statusCode: _apiConfig.STATUS_CODE.ERROR,
-      body: process.env.DEBUG == 1 ? JSON.stringify(e) : JSON.stringify(_apiConfig.ERROR_MSG)
+      headers: _apiConfig.HEADER.DEFAULT,
+      body: process.env.DEBUG == 1 ? JSON.stringify(e) : JSON.stringify(_apiConfig.ERROR_MSG.DEFAULT)
     });
 
   }
@@ -122,13 +134,15 @@ module.exports.usersUpdate = async (event, context) => {
 
     return (null, {
       statusCode: _apiConfig.STATUS_CODE.SUCCESS,
-      body: res ? JSON.stringify(res) : JSON.stringify('OK')
+      headers: _apiConfig.HEADER.DEFAULT,
+      body: res ? JSON.stringify(res) : JSON.stringify(_apiConfig.SUCCESS_MSG.DEFAULT)
     });
 
   } catch (e) {
     return (null, {
       statusCode: _apiConfig.STATUS_CODE.ERROR,
-      body: process.env.DEBUG == 1 ? JSON.stringify(e) : JSON.stringify(_apiConfig.ERROR_MSG)
+      headers: _apiConfig.HEADER.DEFAULT,
+      body: process.env.DEBUG == 1 ? JSON.stringify(e) : JSON.stringify(_apiConfig.ERROR_MSG.DEFAULT)
     });
 
   }
