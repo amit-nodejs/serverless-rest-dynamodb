@@ -7,41 +7,16 @@ provider:
   runtime: nodejs8.10
   stage: ${opt:stage, 'dev'} # Optional - Set the default stage used. Default is dev
   region: ${opt:region, 'us-east-1'} # Optional - Overwrite the default region used. Default is us-east-1
-  stackName: custom-stack-name # Optional - Use a custom name for the CloudFormation stack
-  apiName: custom-api-name # Optional - Use a custom name for the API Gateway API
-  #profile: production # The default profile to use with this service
   memorySize: 512 # Optional - Overwrite the default memory size. Default is 1024
   timeout: 10 # Optional - The default is 6 seconds. Note: API Gateway current maximum is 30 seconds
-  logRetentionInDays: 14 # Optional - Set the default RetentionInDays for a CloudWatch LogGroup
-  #role: arn:aws:iam::XXXXXX:role/role # Overwrite the default IAM role which is used for all functions
-  
   environment: ${file(env.yml)} # Service wide environment variables. You can reference the entire file
-
-package: # Optional - Deployment packaging configuration
-  include: # Specify the directories and files which should be included in the deployment package
-    - src/**
-    - handler.js
-  #exclude: # Specify the directories and files which should be excluded in the deployment package
-    #- .git/**
-    #- .travis.yml
-  excludeDevDependencies: true # Config if Serverless should automatically exclude dev dependencies in the deployment package. Defaults to true
-  #artifact: path/to/my-artifact.zip # Own package that should be used. You must provide this file.
-  individually: false # Enables individual packaging for each function. If true you must provide package for each function. Defaults to false
 
 plugins:
  - serverless-offline
 
 functions:
   usersCreate: # A Function
-    handler: handler.usersCreate # The file and module for this specific function.
-    #memorySize: 512 # memorySize for this specific function.
-    #runtime: nodejs6.10 # Runtime for this specific function. Overrides the default which is set on the provider level
-    #timeout: 10 # Timeout for this specific function.  Overrides the default set above.
-    #role: arn:aws:iam::XXXXXX:role/role # IAM role which will be used for this function
-    #onError: arn:aws:sns:us-east-1:XXXXXX:sns-topic # Optional SNS topic arn (Ref and Fn::ImportValue are supported as well) which will be used for the DeadLetterConfig
-    #environment: # Function level environment variables
-      #functionEnvVar: 12345678
-    
+    handler: handler.usersCreate # The file and module for this specific function.    
     events: # The Events that trigger this Function
       - http: # This creates an API Gateway HTTP endpoint which can be used to trigger this function.  Learn more in "events/apigateway"
           path: users # Path for this endpoint
@@ -79,77 +54,3 @@ functions:
           path: users/{userId} 
           method: delete  
           cors: true
-
-  # Supports multiple events as shown below
-      # - s3:
-      #     bucket: photos
-      #     event: s3:ObjectCreated:*
-      #     rules:
-      #       - prefix: uploads/
-      #       - suffix: .jpg
-            
-      # - schedule:
-      #     name: my scheduled event
-      #     description: a description of my scheduled event's purpose
-      #     rate: rate(10 minutes)
-      #     enabled: false
-      #     input:
-      #       key1: value1
-      #       key2: value2
-      #       stageParams:
-      #         stage: dev
-      #     inputPath: '$.stageVariables'
-
-      # - sns:
-      #     topicName: aggregate
-      #     displayName: Data aggregation pipeline
-
-      # - sqs:
-      #     arn: arn:aws:sqs:region:XXXXXX:myQueue
-      #     batchSize: 10
-
-      # - stream:
-      #     arn: arn:aws:kinesis:region:XXXXXX:stream/foo
-      #     batchSize: 100
-      #     startingPosition: LATEST
-      #     enabled: false
-
-      # - alexaSkill:
-      #     appId: amzn1.ask.skill.xx-xx-xx-xx
-      #     enabled: true
-
-      # - alexaSmartHome:
-      #     appId: amzn1.ask.skill.xx-xx-xx-xx
-      #     enabled: true
-
-      # - iot:
-      #     name: myIoTEvent
-      #     description: An IoT event
-      #     enabled: true
-      #     sql: "SELECT * FROM 'some_topic'"
-      #     sqlVersion: beta
-
-      # - cloudwatchEvent:
-      #     event:
-      #       source:
-      #         - "aws.ec2"
-      #       detail-type:
-      #         - "EC2 Instance State-change Notification"
-      #       detail:
-      #         state:
-      #           - pending
-      #     # Note: you can either use "input" or "inputPath"
-      #     input:
-      #       key1: value1
-      #       key2: value2
-      #       stageParams:
-      #         stage: dev
-      #     inputPath: '$.stageVariables'
-
-      # - cloudwatchLog:
-      #     logGroup: '/aws/lambda/hello'
-      #     filter: '{$.userIdentity.type = Root}'
-
-      # - cognitoUserPool:
-      #     pool: MyUserPool
-      #     trigger: PreSignUp

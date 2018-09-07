@@ -11,7 +11,7 @@ export AWS_SECRET_ACCESS_KEY=XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 ```
 ## Run in local environment
 ```sh
-serverless offline-start
+serverless offline start
 ```
 ##### Sample output
 ```sh
