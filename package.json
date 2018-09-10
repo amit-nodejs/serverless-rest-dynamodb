@@ -1,6 +1,6 @@
 {
   "name": "serverless-rest-dynamodb",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Serverless REST API with DynamoDB",
   "main": "handler.js",
   "dependencies": {
